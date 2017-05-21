@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>distributions module &#8212; KLD Project 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-distributions">
+<span id="distributions-module"></span><h1>distributions module<a class="headerlink" href="#module-distributions" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="distributions.distribution">
+<em class="property">class </em><code class="descclassname">distributions.</code><code class="descname">distribution</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="distributions.distribution.logpdf">
+<code class="descname">logpdf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution.logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.distribution.norm_logpdf">
+<code class="descname">norm_logpdf</code><span class="sig-paren">(</span><em>x</em>, <em>mu=0</em>, <em>sigma=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution.norm_logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution.norm_logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.distribution.norm_pdf">
+<code class="descname">norm_pdf</code><span class="sig-paren">(</span><em>x</em>, <em>mu=0</em>, <em>sigma=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution.norm_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution.norm_pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.distribution.pdf">
+<code class="descname">pdf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution.pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.distribution.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution.plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.distribution.sample">
+<code class="descname">sample</code><span class="sig-paren">(</span><em>nsamples</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution.sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.distribution.update_params">
+<code class="descname">update_params</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#distribution.update_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.distribution.update_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="distributions.p_x">
+<code class="descclassname">distributions.</code><code class="descname">p_x</code><span class="sig-paren">(</span><em>nsamples=1</em>, <em>m1=0</em>, <em>m2=4</em>, <em>sigma1=1</em>, <em>sigma2=1</em>, <em>pi=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#p_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.p_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>The distribution to be approximated</p>
+<div class="math">
+\[x \sim \pi*N(\mu_1, \sigma_1) + (1-\pi) * N(\mu_2, \sigma_2)\]</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="distributions.px">
+<em class="property">class </em><code class="descclassname">distributions.</code><code class="descname">px</code><span class="sig-paren">(</span><em>name='mix_gauss'</em>, <em>seed=1</em>, <em>nsamples=1</em>, <em>m1=0</em>, <em>m2=4</em>, <em>sigma1=1</em>, <em>sigma2=1</em>, <em>pi=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#px"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.px" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#distributions.distribution" title="distributions.distribution"><code class="xref py py-class docutils literal"><span class="pre">distributions.distribution</span></code></a></p>
+<dl class="method">
+<dt id="distributions.px.logpdf">
+<code class="descname">logpdf</code><span class="sig-paren">(</span><em>samples</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#px.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.px.logpdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the logpdf of the mixture of gaussians.</p>
+<div class="math">
+\[log(\pi*N(x|\mu_1, \sigma_1)+(1-\pi)*N(x|\mu_2, \sigma_2)) =\
+    log(\pi) + log(N(x|\mu_1, \sigma_1)) + \
+    log(1 + ((1-\pi)/\pi) * (\sigma2 / \sigma_1) * \
+    \exp(0.5 * ( \
+    ((x-\mu_2)/\sigma_2)^2 - ((x-\mu_1)/\sigma_1)^2 \
+    )) \
+    )\]</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="distributions.px.pdf">
+<code class="descname">pdf</code><span class="sig-paren">(</span><em>samples</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#px.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.px.pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.px.sample">
+<code class="descname">sample</code><span class="sig-paren">(</span><em>nsamples=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#px.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.px.sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="distributions.q_x">
+<code class="descclassname">distributions.</code><code class="descname">q_x</code><span class="sig-paren">(</span><em>nsamples=1</em>, <em>mu=0</em>, <em>sigma=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#q_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.q_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>The approximating distribution.</p>
+<div class="math">
+\[x \sim N(mu, sigma)\]</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="distributions.qx">
+<em class="property">class </em><code class="descclassname">distributions.</code><code class="descname">qx</code><span class="sig-paren">(</span><em>name='gauss'</em>, <em>seed=1</em>, <em>nsamples=1</em>, <em>mu=0</em>, <em>sigma=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#qx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.qx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#distributions.distribution" title="distributions.distribution"><code class="xref py py-class docutils literal"><span class="pre">distributions.distribution</span></code></a></p>
+<dl class="method">
+<dt id="distributions.qx.logpdf">
+<code class="descname">logpdf</code><span class="sig-paren">(</span><em>samples</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#qx.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.qx.logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.qx.pdf">
+<code class="descname">pdf</code><span class="sig-paren">(</span><em>samples</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#qx.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.qx.pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="distributions.qx.sample">
+<code class="descname">sample</code><span class="sig-paren">(</span><em>nsamples=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/distributions.html#qx.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#distributions.qx.sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/distributions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kunal Ghosh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/distributions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

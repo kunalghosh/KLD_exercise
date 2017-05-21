@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>distributions &#8212; KLD Project 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for distributions</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">norm</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<div class="viewcode-block" id="distribution"><a class="viewcode-back" href="../distributions.html#distributions.distribution">[docs]</a><span class="k">class</span> <span class="nc">distribution</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;seed&#39;</span><span class="p">]</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;distribution_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="distribution.sample"><a class="viewcode-back" href="../distributions.html#distributions.distribution.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nsamples</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+<div class="viewcode-block" id="distribution.update_params"><a class="viewcode-back" href="../distributions.html#distributions.distribution.update_params">[docs]</a>    <span class="k">def</span> <span class="nf">update_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># I don&#39;t use self.__dict__.update()</span>
+        <span class="c1"># because, this way </span>
+        <span class="c1"># someone could possibly add a new</span>
+        <span class="c1"># attribute to the class</span>
+        <span class="c1"># self.__dict__.update(kwargs)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+    <span class="c1"># class method allows to get subclass</span>
+    <span class="c1"># name in superclass</span>
+<div class="viewcode-block" id="distribution.plot"><a class="viewcode-back" href="../distributions.html#distributions.distribution.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">nsamples</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.png&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="distribution.pdf"><a class="viewcode-back" href="../distributions.html#distributions.distribution.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="distribution.logpdf"><a class="viewcode-back" href="../distributions.html#distributions.distribution.logpdf">[docs]</a>    <span class="k">def</span> <span class="nf">logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="distribution.norm_pdf"><a class="viewcode-back" href="../distributions.html#distributions.distribution.norm_pdf">[docs]</a>    <span class="k">def</span> <span class="nf">norm_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># only for 1d</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">val</span></div>
+
+<div class="viewcode-block" id="distribution.norm_logpdf"><a class="viewcode-back" href="../distributions.html#distributions.distribution.norm_logpdf">[docs]</a>    <span class="k">def</span> <span class="nf">norm_logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># only for 1d</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span> <span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">val</span></div></div>
+
+
+<div class="viewcode-block" id="px"><a class="viewcode-back" href="../distributions.html#distributions.px">[docs]</a><span class="k">class</span> <span class="nc">px</span><span class="p">(</span><span class="n">distribution</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;mix_gauss&quot;</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nsamples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">m1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">m2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">sigma1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">sigma2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">pi</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span><span class="n">nsamples</span><span class="o">=</span><span class="n">nsamples</span><span class="p">,</span><span class="n">m1</span><span class="o">=</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="o">=</span><span class="n">m2</span><span class="p">,</span>
+                        <span class="n">sigma1</span><span class="o">=</span><span class="n">sigma1</span><span class="p">,</span><span class="n">sigma2</span><span class="o">=</span><span class="n">sigma2</span><span class="p">,</span><span class="n">pi</span><span class="o">=</span><span class="n">pi</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nsamples</span><span class="o">=</span><span class="n">nsamples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">=</span><span class="n">m1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="o">=</span><span class="n">m2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma1</span><span class="o">=</span><span class="n">sigma1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma2</span><span class="o">=</span><span class="n">sigma2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="o">=</span><span class="n">pi</span>
+    
+<div class="viewcode-block" id="px.sample"><a class="viewcode-back" href="../distributions.html#distributions.px.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsamples</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">num_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsamples</span> <span class="k">if</span> <span class="n">nsamples</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">nsamples</span>
+        <span class="k">return</span> <span class="n">p_x</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">m1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">,</span> <span class="n">sigma1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma1</span><span class="p">,</span>
+                    <span class="n">sigma2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma2</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span></div>
+
+    <span class="c1"># def evaluate(self,samples):</span>
+    <span class="c1">#     # probabilities = self.pi*norm.pdf(samples ,loc=self.m1, scale=self.sigma1) + \</span>
+    <span class="c1">#     #                (1-self.pi)*norm.pdf(samples, loc=self.m2, scale=self.sigma2)</span>
+    <span class="c1">#     probabilities = self.pdf(samples)</span>
+    <span class="c1">#     return probabilities</span>
+
+<div class="viewcode-block" id="px.pdf"><a class="viewcode-back" href="../distributions.html#distributions.px.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="n">probabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_pdf</span><span class="p">(</span><span class="n">samples</span> <span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma1</span><span class="p">)</span> <span class="o">+</span> \
+                        <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_pdf</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">probabilities</span></div>
+
+<div class="viewcode-block" id="px.logpdf"><a class="viewcode-back" href="../distributions.html#distributions.px.logpdf">[docs]</a>    <span class="k">def</span> <span class="nf">logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the logpdf of the mixture of gaussians.</span>
+
+<span class="sd">        .. math ::</span>
+<span class="sd">            log(\pi*N(x|\mu_1, \sigma_1)+(1-\pi)*N(x|\mu_2, \sigma_2)) =\\</span>
+<span class="sd">                log(\pi) + log(N(x|\mu_1, \sigma_1)) + \\</span>
+<span class="sd">                log(1 + ((1-\pi)/\pi) * (\sigma2 / \sigma_1) * \\</span>
+<span class="sd">                \exp(0.5 * ( \\</span>
+<span class="sd">                ((x-\mu_2)/\sigma_2)^2 - ((x-\mu_1)/\sigma_1)^2 \\</span>
+<span class="sd">                )) \\</span>
+<span class="sd">                )</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pi</span><span class="p">,</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="n">sigma1</span><span class="p">,</span><span class="n">sigma2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">mu1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">mu2</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma2</span>
+        <span class="n">probabilities</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_logpdf</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">)</span> <span class="o">+</span> \
+                        <span class="n">log</span><span class="p">(</span> \
+                                <span class="mi">1</span> <span class="o">+</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">sigma2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">sigma1</span><span class="p">)</span> <span class="o">*</span>  \
+                                    <span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span> \
+                                        <span class="p">((</span><span class="n">samples</span><span class="o">-</span><span class="n">m2</span><span class="p">)</span><span class="o">/</span><span class="n">sigma2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> \
+                                        <span class="p">((</span><span class="n">samples</span><span class="o">-</span><span class="n">m1</span><span class="p">)</span><span class="o">/</span><span class="n">sigma1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> \
+                                        <span class="p">)</span> \
+                                <span class="p">))</span>
+        <span class="k">return</span> <span class="n">probabilities</span></div></div>
+    
+<div class="viewcode-block" id="qx"><a class="viewcode-back" href="../distributions.html#distributions.qx">[docs]</a><span class="k">class</span> <span class="nc">qx</span><span class="p">(</span><span class="n">distribution</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;gauss&quot;</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nsamples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span><span class="n">nsamples</span><span class="o">=</span><span class="n">nsamples</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span>
+                <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nsamples</span><span class="o">=</span><span class="n">nsamples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+
+<div class="viewcode-block" id="qx.sample"><a class="viewcode-back" href="../distributions.html#distributions.qx.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsamples</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">num_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsamples</span> <span class="k">if</span> <span class="n">nsamples</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">nsamples</span>
+        <span class="k">return</span> <span class="n">q_x</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span></div>
+
+    <span class="c1"># def evaluate(self, samples):</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     Evaluates the probability of the samples originating from this distribution</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     # probabilities = norm.pdf(samples, loc=self.mu, scale=self.sigma)</span>
+    <span class="c1">#     probabilities = self.pdf(samples, loc=self.mu, scale=self.sigma)</span>
+    <span class="c1">#     return probabilities</span>
+    
+<div class="viewcode-block" id="qx.pdf"><a class="viewcode-back" href="../distributions.html#distributions.qx.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_pdf</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="qx.logpdf"><a class="viewcode-back" href="../distributions.html#distributions.qx.logpdf">[docs]</a>    <span class="k">def</span> <span class="nf">logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_logpdf</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="p_x"><a class="viewcode-back" href="../distributions.html#distributions.p_x">[docs]</a><span class="k">def</span> <span class="nf">p_x</span><span class="p">(</span><span class="n">nsamples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">m1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">m2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">sigma1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">sigma2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">pi</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The distribution to be approximated</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        x \sim \pi*N(\mu_1, \sigma_1) + (1-\pi) * N(\mu_2, \sigma_2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">samples_uniform</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sample_uniform</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">samples_uniform</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sample_uniform</span> <span class="o">&lt;</span> <span class="n">pi</span><span class="p">:</span>
+            <span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">sigma1</span> <span class="o">+</span> <span class="n">m1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">sigma2</span> <span class="o">+</span> <span class="n">m2</span>
+    <span class="k">return</span> <span class="n">samples</span></div>
+
+<div class="viewcode-block" id="q_x"><a class="viewcode-back" href="../distributions.html#distributions.q_x">[docs]</a><span class="k">def</span> <span class="nf">q_x</span><span class="p">(</span><span class="n">nsamples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The approximating distribution.</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        x \sim N(mu, sigma)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">+</span> <span class="n">mu</span>
+    <span class="k">return</span> <span class="n">samples</span></div>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">seed</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Seed is not 1. Tests will fail !&quot;</span>
+    <span class="n">px</span> <span class="o">=</span> <span class="n">p_x</span><span class="p">()</span>
+    <span class="n">qx</span> <span class="o">=</span> <span class="n">q_x</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">px</span> <span class="o">-</span> <span class="mf">1.62434536</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="n">e</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;p_x doesn&#39;t implement a standard gaussian ! p_x = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p_x</span>
+    <span class="k">assert</span> <span class="n">qx</span> <span class="o">-</span> <span class="o">-</span><span class="mf">0.61175641</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="n">e</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;q_x doesn&#39;t implement a mixture of gaussians ! q_x = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">q_x</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kunal Ghosh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
